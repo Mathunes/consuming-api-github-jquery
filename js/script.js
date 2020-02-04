@@ -2,14 +2,52 @@ $(() => {
 
     $('#data-user').hide();
 
-    const showError = () => {
-        $('#error').html('Digite um valor')
+    const showError = error => {
+        $('#data-user').hide();
+        $('#error').html(error)
     }
 
-    const showData = response => {
-        console.log(response)
+    const showDataRepositories = repositories => {
+        console.log(repositories)
+        repositories.map((repositorie, i) => {
+            $('<div>', {
+                id: `repositorie-${i}`,
+                class: 'repositorie',
+            }).appendTo('#repositories-container');
+
+            $('<h3>', {
+                id: `title-repositorie-${i}`,
+            }).appendTo(`#repositorie-${i}`);
+
+            $('<a>', {
+                id: `link-repositorie-${i}`,
+                href: repositorie.html_url,
+            }).appendTo(`#repositorie-${i}`);
+
+            $('<span>', {
+                id: `description-repositorie-${i}`,
+            }).appendTo(`#repositorie-${i}`);
+
+            $(`#title-repositorie-${i}`).html(repositorie.name)
+            $(`#link-repositorie-${i}`).html(repositorie.html_url)
+            $(`#description-repositorie-${i}`).html(repositorie.description)
+        })
+    }
+
+    const searchRepositories = username => {
+        $.ajax({
+            url: `https://api.github.com/users/${username}/repos`,
+            success: response => {
+                showDataRepositories(response)
+            }
+        })
+    }
+
+    const showDataUser = (response, username = "") => {
+
         if (response) {
-            console.log(response.name)
+            searchRepositories(username);
+
             $('#data-user #title-user').html(response.name)
             $('#data-user #photo-user').attr('src', response.avatar_url)
             $('#data-user #link-user')
@@ -18,14 +56,13 @@ $(() => {
 
             $('#data-user').show();
         } else {
-            
+            showError('Usuário não encontrado')
         }
         
     }
 
     const searchUser = username => {
         $('#error').html('')
-        const response = {};
         
         $.ajax({
             url: `https://api.github.com/users/${username}`,
@@ -36,12 +73,12 @@ $(() => {
 
             success: response => {
                 $('#loading').html('')
-                showData(response)
+                showDataUser(response, username)
             },
 
             error: () => {
                 $('#loading').html('')
-                showData(false)
+                showDataUser(false)
             }
         })
 
@@ -55,6 +92,6 @@ $(() => {
         
         username ? 
         searchUser(username) :
-        showError();
+        showError('Digite um valor');
     })
 })

@@ -88,7 +88,8 @@ $(() => {
         e.preventDefault();
 
         const username = $('header nav form#form-search input#username')[0].value;
-        let response;
+        $('header nav form#form-search input#username')[0]
+            .value = ""
         
         username ? 
         searchUser(username) :

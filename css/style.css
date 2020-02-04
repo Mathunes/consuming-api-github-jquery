@@ -210,3 +210,11 @@ a:hover {
         font-size: 14px;
     }
 }
+
+#message {
+    width: 100%;
+    height: calc(100vh - 108px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

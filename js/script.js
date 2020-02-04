@@ -4,11 +4,14 @@ $(() => {
 
     const showError = error => {
         $('#data-user').hide();
+        $('#message').show()
         $('#error').html(error)
     }
 
     const showDataRepositories = repositories => {
-        console.log(repositories)
+        if ($('#repositories-container').children().length > 0) {
+            $('#repositories-container').empty()
+        }
         repositories.map((repositorie, i) => {
             $('<div>', {
                 id: `repositorie-${i}`,
@@ -73,6 +76,7 @@ $(() => {
 
             success: response => {
                 $('#loading').html('')
+                $('#message').hide()
                 showDataUser(response, username)
             },
 

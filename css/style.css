@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 *:focus {
@@ -44,3 +45,19 @@ header nav form input[type='text']:focus {
     color: #404448;
 }
 
+main {
+    display: flex;
+    padding: 20px;
+}
+
+main #data-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+main #data-user img {
+    width: 20vw;
+}

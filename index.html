@@ -12,16 +12,28 @@
     <header>
         <h1>GitHub Usuários</h1>
         <nav>
-            <form>
-                <input type="text" placeholder="Informe um usuário...">
+            <form id="form-search">
+                <input type="text" placeholder="Informe um usuário..." id="username">
             </form>
         </nav>
     </header>
+
+    <span id="error"></span>
+    <span id="loading"></span>
+
+    <div id="data-user">
+        <h2 id="title-user"></h2>
+        <img src="" alt="Foto do usuario" id="photo-user"/>
+        <a href="" id="link-user"></a>
+    </div>
 
     <script
         src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous">
+    </script>
+    <script
+        src="js/script.js">
     </script>
 </body>
 </html>

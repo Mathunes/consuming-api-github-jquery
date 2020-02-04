@@ -3,6 +3,10 @@ $(() => {
     $('#data-user').hide();
 
     const showMessage = error => {
+        if ($('#repositories-container').children().length > 0) {
+            $('#repositories-container').empty()
+        }
+
         $('#message').show()
         $('#initial').hide();
         $('#data-user').hide();
@@ -14,6 +18,7 @@ $(() => {
         if ($('#repositories-container').children().length > 0) {
             $('#repositories-container').empty()
         }
+
         repositories.map((repositorie, i) => {
             $('<div>', {
                 id: `repositorie-${i}`,

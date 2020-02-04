@@ -27,6 +27,7 @@ $(() => {
             $('<a>', {
                 id: `link-repositorie-${i}`,
                 href: repositorie.html_url,
+                target: "_blank",
             }).appendTo(`#repositorie-${i}`);
 
             $('<span>', {

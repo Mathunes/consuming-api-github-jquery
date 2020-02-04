@@ -2,10 +2,12 @@ $(() => {
 
     $('#data-user').hide();
 
-    const showError = error => {
-        $('#data-user').hide();
+    const showMessage = error => {
         $('#message').show()
+        $('#initial').hide();
+        $('#data-user').hide();
         $('#error').html(error)
+        $('#error').show()
     }
 
     const showDataRepositories = repositories => {
@@ -59,13 +61,14 @@ $(() => {
 
             $('#data-user').show();
         } else {
-            showError('Usuário não encontrado')
+            showMessage('Usuário não encontrado')
         }
         
     }
 
     const searchUser = username => {
-        $('#error').html('')
+        $('#error').hide();
+        $('#initial').hide();
         
         $.ajax({
             url: `https://api.github.com/users/${username}`,
@@ -97,6 +100,6 @@ $(() => {
         
         username ? 
         searchUser(username) :
-        showError('Digite um valor');
+        showMessage('Digite um valor');
     })
 })
